@@ -1,14 +1,20 @@
 const express = require("express");
-const app = express();
+const cors = require("cors");
 
+const app = express();
+const PORT = process.env.PORT || 10000; // Usa la porta assegnata da Render
+
+app.use(cors()); // Permette le richieste CORS
+app.use(express.json()); // Abilita il parsing dei JSON
+
+// **Test route per verificare se il server funziona**
 app.get("/", (req, res) => {
-    res.json({ 
-        status: "ok",
-        message: "NOWN API for Canva is active"
-    });
+  res.send("✅ NOWN API is running correctly on Render!");
 });
 
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+// **Altre API routes possono essere aggiunte qui**
+
+// **Avvia il server**
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
